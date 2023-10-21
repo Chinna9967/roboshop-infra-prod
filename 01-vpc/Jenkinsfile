@@ -1,0 +1,55 @@
+pipeline{
+    agent { node { label 'agent1'} }
+    options{
+        ansiColor('xterm')
+    }
+    stages{
+        stage('init'){
+            steps{
+                sh '''
+                 cd 01-vpc
+                 ls -ltr
+                 pwd
+                 terraform init -reconfigure
+                 terraform init
+                '''
+            }
+        }
+        stage('Plan'){
+            steps{
+                sh'''
+                 cd 01-vpc
+                 ls -ltr
+                 pwd
+                 terraform plan
+                '''
+            }    
+        }
+        stage('Approve'){
+            steps{
+                input "Shall i apply"
+            }
+        }
+        stage('Apply'){
+            steps{
+                sh '''
+                    pwd 
+                    ls -ltr
+                    cd 01-vpc
+                    terraform apply -auto-approve
+                '''
+            }
+        }
+    }
+    post{
+        always{
+            echo 'iam always running whether job is sucess or not'
+        }
+        success{
+            echo 'iam running when job is success'
+        }
+        failure{
+            echo 'iam running when the job is failure'
+        }
+    }
+}
