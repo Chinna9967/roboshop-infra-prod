@@ -8,7 +8,7 @@ terraform {
 
 backend "s3" {
     bucket   = "terraform-vpc-creation-bucket"
-    key = "MongoDB-Prod"
+    key = "MongoDB-prod"
     region = "us-east-1"
     dynamodb_table = "terraform_dynamo_table_s3"
 }

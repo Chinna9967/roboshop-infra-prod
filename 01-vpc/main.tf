@@ -1,7 +1,7 @@
 module "vpc" {
   # if you do it from jenkins, you must have this in github repo
   source = "../../terraform-aws-vpc-advanced"
-  env =  var.env
+  env = var.env
   project_name = var.project_name #"roboshop" instead of hard coding we are keeping in variables.tf
   cidr_block = var.cidr_block
   common_tags = var.common_tags
