@@ -22,6 +22,6 @@ resource "aws_iam_role" "catalogue" {
 }
 
 resource "aws_iam_instance_profile" "catalogue_profile" {
-  name = "catalogue-profile-${var.env}"
+  name = "catalogue_profile-${var.env}"
   role = aws_iam_role.catalogue.name
 }
